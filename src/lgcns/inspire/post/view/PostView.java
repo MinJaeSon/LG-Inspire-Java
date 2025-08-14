@@ -88,7 +88,20 @@ public class PostView {
     }
 
     public void insert() {
-        System.out.println(">>> post view insert");
+        System.out.println(">>>> 제목, 내용, 작성자 입력 <<<<");
+        System.out.print(">>> 제목 : ");
+        String title = scan.nextLine(); // 문자열로 입력 받기
+        System.out.print(">>> 내용 : ");
+        String content = scan.nextLine();
+        System.out.print(">>> 작성자 : ");
+        String writer = scan.nextLine();
+
+        int successFlag = controller.insertPost(title, content, writer);
+        if (successFlag == 1) {
+            System.out.println("게시글 입력에 성공했습니다.");
+        } else {
+            System.out.println("게시글 입력에 실패했습니다.");
+        }
     }
     
     

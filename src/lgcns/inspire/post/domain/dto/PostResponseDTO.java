@@ -11,13 +11,14 @@ import lombok.ToString;
 @Getter
 @ToString
 public class PostResponseDTO {
+    private int id;
     private String title;
     private String content;
     private String writer;
     private LocalDateTime regDate;
     private int viewCnt;
+
     public int getId() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getId'");
+        return id;
     }
 }

@@ -2,6 +2,7 @@ package lgcns.inspire.post.repository;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.ArrayList;
 
 import lgcns.inspire.post.domain.dto.PostRequestDTO;
 import lgcns.inspire.post.domain.dto.PostResponseDTO;
@@ -12,13 +13,16 @@ import lgcns.inspire.post.domain.dto.PostResponseDTO;
  * - 입력(C), 읽기(R), 수정(U), 삭제(D) => CRUD
  * - Structure Query Language (SQL) : DDL, DML, DCL, Select Query
  */
-public interface postDAO {
-    private 
+public class PostDAO {
+    
+    private List<PostResponseDTO> posts = new ArrayList<>();
     
     // 입력(C)
     public int insertRow(PostRequestDTO req) { // request dto를 받아서 int로 반환
         System.out.println(">>>> dao insertRow");
-        return 0;
+        int flag = 1; // 입력 성공 시 1
+        posts.add(PostRequestDTO.toResponseDTO(req));
+        return flag;
     }
 
     // 읽기(R) - 전체

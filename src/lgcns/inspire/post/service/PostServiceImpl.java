@@ -4,13 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import lgcns.inspire.post.domain.dto.PostResponseDTO;
-import lgcns.inspire.post.repository.postDAO;
+import lgcns.inspire.post.repository.PostDAO;
 
 public class PostServiceImpl implements PostService {
     private PostDAO dao; // 동일 패턴으로 참조 타입의 변수 선언 (service는 dao를 참조하므로 참조 타입의 변수 선언 -> dao에서 생성된 객체를 주입)
 
     public PostServiceImpl() {
-        dao = new postDAO(); 
+        dao = new PostDAO(); 
     }
 
     @Override
@@ -31,6 +31,12 @@ public class PostServiceImpl implements PostService {
                                             .filter(post -> post.getId() == id)
                                             .findFirst();
         return result;
+    }
+
+    @Override
+    public int insertService(PostRequestDTO req) {
+        System.out.println(">>>> post service insertService : " + req);
+        return dao.insertRow(req);
     }
 
 }

@@ -3,6 +3,7 @@ package lgcns.inspire.post.ctrl;
 import java.util.List;
 import java.util.Optional;
 
+import lgcns.inspire.post.domain.dto.PostRequestDTO;
 import lgcns.inspire.post.domain.dto.PostResponseDTO;
 import lgcns.inspire.post.service.PostService;
 import lgcns.inspire.post.service.PostServiceImpl;
@@ -21,5 +22,18 @@ public class PostController {
     public Optional<PostResponseDTO> findPost(int id) {
         System.out.println(">>>> post controller findPost id : " + id);
         return service.selectService(id);
+    }
+
+    public int insertPost(String title, String content, String writer) {
+        System.out.println(">>>> post controller insertPost");
+        // 전달된 파라미터를 PostResponseDTO 객체로 바인딩하고
+        // 기본키 값은 size() + 1 로 id값을 할당
+        PostRequestDTO req = PostRequestDTO.builder()
+                                        .title(title)
+                                        .content(content)
+                                        .writer(writer)
+                                        .id(service.selectService().size() + 1)
+                                        .build();
+        return service.insertService(req);
     }
 }
