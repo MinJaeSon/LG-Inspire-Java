@@ -35,18 +35,21 @@ public class PostDAO {
                 .id(1)
                 .title("제목1")
                 .content("내용1")
+                .writer("작성자1")
                 .build(),
                 
                 PostResponseDTO.builder()
                 .id(2)
                 .title("제목2")
                 .content("내용2")
+                .writer("작성자1")
                 .build(),
                 
                 PostResponseDTO.builder()
                 .id(3)
                 .title("제목3")
                 .content("내용3")
+                .writer("작성자2")
                 .build()
         ));
         

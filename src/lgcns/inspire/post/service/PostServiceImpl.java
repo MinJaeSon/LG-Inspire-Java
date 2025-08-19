@@ -2,7 +2,10 @@ package lgcns.inspire.post.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
+import lgcns.inspire.post.domain.dto.PostRequestDTO;
 import lgcns.inspire.post.domain.dto.PostResponseDTO;
 import lgcns.inspire.post.repository.PostDAO;
 
@@ -39,4 +42,19 @@ public class PostServiceImpl implements PostService {
         return dao.insertRow(req);
     }
 
+    @Override
+    public Optional<List<PostResponseDTO>> searchService(String writer) {
+        System.out.println(">>>> post service searchService : " + writer);
+        // 존재하지 않는다면 Optional로 감싸서 반환
+        List<PostResponseDTO> list = dao.selectRow();
+        List<PostResponseDTO> result = list.stream()
+                                            .filter(post -> post.getWriter().equals(writer))
+                                            .collect(Collectors.toList());
+        
+        if (result.isEmpty()) {
+            return Optional.empty();
+        }
+        
+        return Optional.of(result);
+    }
 }
